@@ -1,6 +1,6 @@
 ---
 slug: hello-world
-title: Hello
+title: 第一篇
 author: Endilie Yacop Sucipto
 author_title: Maintainer of Docusaurus
 author_url: https://github.com/endiliey

@@ -2,14 +2,14 @@ module.exports = {
   docs: [
     {
       type: 'category',
-      label: 'Docusaurus Tutorial',
+      label: 'Docusaurus 教程',
       items: [
-        'getting-started',
-        'create-a-page',
-        'create-a-document',
-        'create-a-blog-post',
-        'markdown-features',
-        'thank-you',
+        '快速开始',
+        '创建一个页面',
+        '创建一个文档',
+        '创建一篇博客',
+        'markdown-功能',
+        '致谢',
       ],
     },
   ],
