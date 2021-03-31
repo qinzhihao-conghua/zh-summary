@@ -13,8 +13,7 @@ module.exports = {
     // 配置公告栏
     announcementBar: {
       id: "note",
-      content:
-        "这里是公告栏",
+      content: "这里是公告栏",
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
     },
@@ -37,7 +36,7 @@ module.exports = {
           position: 'left',
         },
         // 取消博客部分
-        // { to: 'blog', label: '博客', position: 'left' },
+        { to: 'blog', label: '博客', position: 'left' },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -49,24 +48,15 @@ module.exports = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Getting Started',
-              to: 'docs/',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/qinzhihao-conghua',
-            },
-          ],
-        },
+        // {
+        //   title: 'More',
+        //   items: [
+        //     {
+        //       label: 'GitHub',
+        //       href: 'https://github.com/qinzhihao-conghua',
+        //     },
+        //   ],
+        // },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} 不要葱花博客 Inc. Built with Docusaurus.`,
     },
@@ -80,17 +70,20 @@ module.exports = {
           editUrl: 'https://github.com/qinzhihao-conghua',
         },
         blog: {
-          path: "./blog",
-          routeBasePath: "/",
+          // path: "./blog",
+          // routeBasePath: "/",
           blogSidebarTitle: "近期文章",
           showReadingTime: true,
           feedOptions: {
             type: "all",
             title: "不要葱花",
-          },
+          }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+          paginator: {
+            olderPost: { message: '下一页' }
+          }
         },
       },
     ],
