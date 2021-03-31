@@ -2,7 +2,7 @@
 module.exports = {
   title: '博客系统',
   tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  url: '#',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -18,23 +18,26 @@ module.exports = {
       backgroundColor: "#fafbfc",
       textColor: "#091E42",
     },
+    // 收起侧边看
+    hideableSidebar: true,
     // 导航菜单
     navbar: {
-      title: '个人主页',
+      title: '不要葱花',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Logo',
+        src: 'img/logo.jpg',
       },
       // 配置头部菜单导航，一一对应根目录下的文件夹
       items: [
+        { to: '/', label: '首页', position: 'left' },
         {
           to: 'docs/',
           activeBasePath: 'docs',
           label: '文档',
           position: 'left',
         },
-        { to: 'blog', label: '博客', position: 'left' },
-        { to: 'demo', label: 'demo', position: 'left' },
+        // 取消博客部分
+        // { to: 'blog', label: '博客', position: 'left' },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -59,17 +62,13 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/qinzhihao-conghua',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} 不要葱花博客, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} 不要葱花博客 Inc. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -78,15 +77,17 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/qinzhihao-conghua',
+          editUrl: 'https://github.com/qinzhihao-conghua',
         },
         blog: {
+          path: "./blog",
+          routeBasePath: "/",
+          blogSidebarTitle: "近期文章",
           showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          feedOptions: {
+            type: "all",
+            title: "不要葱花",
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -96,23 +97,14 @@ module.exports = {
   ],
   // 通过插件配置多个博客菜单
   plugins: [
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        /**
-         * Required for any multi-instance plugin
-         */
-        id: 'demo',
-        /**
-         * URL route for the blog section of your site.
-         * *DO NOT* include a trailing slash.
-         */
-        routeBasePath: 'demo',
-        /**
-         * Path to data on filesystem relative to site dir.
-         */
-        path: './demo',
-      },
-    ],
+    // 在这里配置多个博客页面
+    // [
+    //   '@docusaurus/plugin-content-blog',
+    //   {
+    //     id: 'demo',
+    //     routeBasePath: 'demo',
+    //     path: './demo',
+    //   },
+    // ],
   ]
 };
