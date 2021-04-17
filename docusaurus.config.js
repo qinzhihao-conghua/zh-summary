@@ -28,15 +28,15 @@ module.exports = {
       },
       // 配置头部菜单导航，一一对应根目录下的文件夹
       items: [
-        { to: '/', label: '首页', position: 'left' },
+        { to: '/', label: '首页', position: 'right' },
         {
-          to: 'docs/',
+          to: 'docs',
           activeBasePath: 'docs',
           label: '文档',
-          position: 'left',
+          position: 'right',
         },
         // 取消博客部分
-        { to: 'blog', label: '博客', position: 'left' },
+        // { to: 'blog', label: '博客', position: 'right' },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -81,9 +81,6 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
-          paginator: {
-            olderPost: { message: '下一页' }
-          }
         },
       },
     ],
