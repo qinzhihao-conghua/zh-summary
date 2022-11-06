@@ -8,7 +8,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'qinzhihao-conghua', // Usually your GitHub org/user name.
-  projectName: 'my-summary', // Usually your repo name.
+  projectName: 'zh-summary', // Usually your repo name.
   themeConfig: {
     // 配置公告栏
     announcementBar: {

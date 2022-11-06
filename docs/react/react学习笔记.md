@@ -2,6 +2,28 @@
 title: react学习笔记
 ---
 
+# 环境要求
+
+```shell
+1. npm install -g create-react-app
+2. create-react-app my-app
+3. npm install --save react-router
+// 安装的时候最好使用yarn，使用npm安装不上路由，有node版本警告
+yarn intall
+// 注意不是react-router，这个很少用
+// yarn add react-router
+yarn add react-router-dom
+```
+
+文件结构
+
+```
+public静态资源文件夹
+mainifest.json应用加壳，快应用，pwa，配置app的名字，图标，权限索取等信息
+```
+
+
+
 # jsx语法规则
 
 
@@ -13,11 +35,11 @@ const vdom=<h1>虚拟dom</h1>; //正确
 const vdom2='<h1>虚拟dom</h1>'; // 错误
 ```
 
-2. 标签中混入js表达式时要用{}
+2. 标签中混入js表达式时要用=={ }==包裹
 
 3. 样式的类名指定不要用class，要用className
 
-4. 内联样式要用style={{key:value}}的形式去写
+4. 内联样式要用```style={{key:value}}```的形式去写
 
 5. 只有一个根标签
 
@@ -333,32 +355,15 @@ class ClassComponent extends React.Component{
 
 ```getSnapshotBeforeUpdate```
 
-# diff算法
+# diff算法注意
 
 当状态中的数据发生变化时，根据新数据生成新的虚拟dom，然后新虚拟dom与就虚拟dom进行比较，此时唯一key值就起重大作用了，如果使用循环时的index做key，此时有可能数组长度变化，下标还存在，但是值已经变化了，导致diff算法失败
 
-# 脚手架
-
-```
-npm install -g create-react-app
-```
-
-```
-create-react-app 项目名称
-```
-
-文件结构
-
-```
-public静态资源文件夹
-mainifest.json应用加壳，快应用，pwa，配置app的名字，图标，权限索取等信息
-```
-
 # 样式冲突问题
 
-由于都是js，如果没有隔离机制会产生样式覆盖的问题，处理方法如下
+由于都是js，如果没有隔离机制会产生样式覆盖的问题，似乎没有一个优美的方法，一个处理方法如下
 
-```
+```jsx
 样式文件的名称中，.css的前缀添加module，例如demo.module.css
 在引入的时候
 import demo from ./demo.module.css
@@ -366,11 +371,9 @@ import demo from ./demo.module.css
 <h1 class={demo.test}></h1>
 ```
 
-# 插件es7/react/redux
-
 # 组件间通讯
 
-父子组件直接通过props传递
+## 父子组件直接通过props传递
 
 兄弟组件通过父组件桥接，父组件通过定义方法传递到子组件，子组件需要传递数据给父组件的时候直接调用这个方法
 
@@ -402,13 +405,9 @@ render(){
 }
 ```
 
-兄弟组件
+## 兄弟组件
 
-
-
-消息订阅-发布订阅机制
-
-```PubSubjs```
+兄弟组件之间通讯可以和angular那样通过父组件来桥接，但是在react的自由写法中似乎没必要那么麻烦，可以通过消息订阅-发布订阅机制来完成，依赖于```PubSubjs```，其实angular和vue也可以这样实现，但是这种方式有一个缺点就是订阅是异步的，如果数据有前后关系，这个方式就不太友好，所以通过父组件桥接仍然有存在的必要
 
 安装pubsub-js之后，
 
@@ -450,7 +449,11 @@ modile.expores=function(app){
 
 # 路由
 
-react的路由与ng和vue的路由不相同，react的路由分散在各个组件中，不利于维护
+react的路由与ng和vue的路由不相同，react的路由分散在各个组件中，不利于统一管理维护
+
+```shell
+npm install react-router-dom
+```
 
 安装react-router-dom后
 
