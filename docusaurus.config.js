@@ -36,7 +36,12 @@ module.exports = {
           position: 'right',
         },
         // 取消博客部分
-        // { to: 'blog', label: '博客', position: 'right' },
+        { 
+          to: 'blog', 
+          activeBasePath: 'blog',
+          label: '博客', 
+          position: 'right' 
+        },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -70,9 +75,11 @@ module.exports = {
           editUrl: 'https://github.com/qinzhihao-conghua',
         },
         blog: {
-          // path: "./blog",
+          path: "./blog",
+          // 设置成/斜杠就是默认网站的首页
           // routeBasePath: "/",
-          blogSidebarTitle: "近期文章",
+          blogSidebarTitle: "所有文章",
+          blogSidebarCount: 'ALL',
           showReadingTime: true,
           feedOptions: {
             type: "all",
