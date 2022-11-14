@@ -1,5 +1,5 @@
 ---
-slug: hola
+# slug: hola
 title: 测试
 author: Gao Wei
 # author_title: Docusaurus Core Team

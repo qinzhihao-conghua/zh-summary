@@ -1,5 +1,5 @@
 ---
-slug: hello-world
+# slug: hello-world
 title: 第一篇
 author: Endilie Yacop Sucipto
 # author_title: Maintainer of Docusaurus

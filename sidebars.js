@@ -29,7 +29,8 @@ module.exports = {
       items: [
         '知识与技能点/消息中心/消息中心',
         '知识与技能点/bpmn-js使用/bpmn-js使用',
-        '知识与技能点/vue与angular性能差异/vue与angular性能差异'
+        '知识与技能点/vue与angular性能差异/vue与angular性能差异',
+        '知识与技能点/ueditor使用过程/ueditor使用过程'
       ]
     },
     {

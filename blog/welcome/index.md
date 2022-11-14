@@ -1,5 +1,5 @@
 ---
-slug: welcome
+# slug: welcome
 title: 欢迎
 author: Yangshun Tay
 # author_title: Front End Engineer @ Facebook
