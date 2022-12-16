@@ -5,7 +5,8 @@ module.exports = {
       label: 'angular',
       items: [
         'angular/通用组件时的扩展性/通用组件时的扩展性',
-        'angular/Angular自定义表单组件/Angular自定义表单组件'
+        'angular/Angular自定义表单组件/Angular自定义表单组件',
+        'angular/Angular路由复用策略/Angular路由复用策略'
       ]
     },
     {
