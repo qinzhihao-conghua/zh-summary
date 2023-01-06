@@ -10,7 +10,7 @@
     <entry>
         <title type="html"><![CDATA[第一篇]]></title>
         <id>第一篇</id>
-        <link href="https://zh-summary.github.io/blog/2022/11/08/hello-world"/>
+        <link href="https://zh-summary.github.io/summary/blog/2022/11/08/hello-world"/>
         <updated>2022-11-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></summary>
     </entry>
