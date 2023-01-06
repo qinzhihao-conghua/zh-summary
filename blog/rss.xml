@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>不要葱花</title>
+        <link>https://zh-summary.github.io/blog</link>
+        <description>博客系统 Blog</description>
+        <lastBuildDate>Tue, 08 Nov 2022 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[第一篇]]></title>
+            <link>https://zh-summary.github.io/blog/2022/11/08/hello-world</link>
+            <guid>第一篇</guid>
+            <pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></description>
+        </item>
+    </channel>
+</rss>
