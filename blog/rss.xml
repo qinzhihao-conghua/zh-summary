@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[第一篇]]></title>
-            <link>https://zh-summary.github.io/summary/blog/2022/11/08/hello-world</link>
+            <link>https://zh-summary.github.io/zh-summary/blog/2022/11/08/hello-world</link>
             <guid>第一篇</guid>
             <pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></description>
