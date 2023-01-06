@@ -3,7 +3,7 @@ module.exports = {
   title: '博客系统',
   tagline: 'The tagline of my site',
   url: 'https://zh-summary.github.io',
-  baseUrl: '/summary/',
+  baseUrl: '/zh-summary/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
