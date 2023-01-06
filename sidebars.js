@@ -36,16 +36,6 @@ module.exports = {
         '知识与技能点/视频流处理/视频流处理',
         '知识与技能点/前端水印/前端水印'
       ]
-    },
-    {
-      type: 'category',
-      label: 'docusaurus相关',
-      items: [
-        'docusaurus相关/创建一个文档',
-        'docusaurus相关/创建一个页面',
-        'docusaurus相关/创建一篇博客',
-        'docusaurus相关/markdown-功能'
-      ]
     }
   ]
 };
