@@ -11,12 +11,12 @@ module.exports = {
   projectName: 'zh-summary', // Usually your repo name.
   themeConfig: {
     // 配置公告栏
-    announcementBar: {
-      id: "note",
-      content: "这里是公告栏",
-      backgroundColor: "#fafbfc",
-      textColor: "#091E42",
-    },
+    // announcementBar: {
+    //   id: "note",
+    //   content: "这里是公告栏",
+    //   backgroundColor: "#fafbfc",
+    //   textColor: "#091E42",
+    // },
     // 收起侧边看
     hideableSidebar: true,
     // 导航菜单

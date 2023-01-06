@@ -1,6 +1,5 @@
 ---
 title: VUE知识点
-authors: 覃智浩
 ---
 
 ## 概况
