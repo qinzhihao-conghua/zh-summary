@@ -2,7 +2,6 @@
 title: Angular自定义表单组件
 # 默认选中的意思
 slug: /
-author: 覃智浩
 ---
 
 <iframe height="400px" width="100%" src="https://www.bilibili.com/"></iframe>

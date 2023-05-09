@@ -1,6 +1,5 @@
 ---
 title:ueditor使用过程
-author:覃智浩
 ---
 
 
