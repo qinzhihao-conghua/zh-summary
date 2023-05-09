@@ -25,7 +25,7 @@ import * as XLSX from 'xlsx';
 
 /**
  * 导出Excel
- * @author qinzhihao
+ * @author 
  * @param excelData ExcelData
  * 如果要展示序号，表头自行添加，并处理好合并关系，同时showOrder传true
  */
@@ -108,7 +108,7 @@ import * as XLSX from 'xlsx-js-style';
 
 /**
  * 导出Excel
- * @author qinzhihao
+ * @author 
  * @param excelData ExcelData
  * 如果要展示序号，表头自行添加，并处理好合并关系，同时showOrder传true
  */

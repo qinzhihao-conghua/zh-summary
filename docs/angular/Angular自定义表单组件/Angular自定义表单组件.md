@@ -4,7 +4,7 @@ title: Angular自定义表单组件
 slug: /
 ---
 
-<iframe height="400px" width="100%" src="https://www.bilibili.com/"></iframe>
+<!-- <iframe height="400px" width="100%" src="https://www.bilibili.com/"></iframe> -->
 1 新建一个普通的组件
 
 2 在组件的```@Component```装饰器中添加```providers:[]```，值为：

@@ -2,21 +2,22 @@
 module.exports = {
   title: '博客系统',
   tagline: 'The tagline of my site',
-  url: '#',
-  baseUrl: '/',
+  url: 'https://zh-summary.github.io',
+  baseUrl: '/zh-summary/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'qinzhihao-conghua', // Usually your GitHub org/user name.
+  // trailingSlash: true,
   projectName: 'zh-summary', // Usually your repo name.
   themeConfig: {
     // 配置公告栏
-    announcementBar: {
-      id: "note",
-      content: "这里是公告栏",
-      backgroundColor: "#fafbfc",
-      textColor: "#091E42",
-    },
+    // announcementBar: {
+    //   id: "note",
+    //   content: "这里是公告栏",
+    //   backgroundColor: "#fafbfc",
+    //   textColor: "#091E42",
+    // },
     // 收起侧边看
     hideableSidebar: true,
     // 导航菜单
