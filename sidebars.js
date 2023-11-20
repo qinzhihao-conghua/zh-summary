@@ -1,6 +1,5 @@
 module.exports = {
-  docs: [
-    {
+  docs: [{
       type: 'category',
       label: 'angular',
       items: [
@@ -24,6 +23,13 @@ module.exports = {
         'react/react学习笔记'
       ]
     },
+    // {
+    //   type: 'category',
+    //   label: 'sql笔记',
+    //   items: [
+    //     'sql笔记/sql笔记'
+    //   ]
+    // },
     {
       type: 'category',
       label: '知识与技能点',
