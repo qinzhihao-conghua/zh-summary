@@ -52,5 +52,63 @@ in 判断某字段的值是否属于in列表中的某一项
 
 
 
-<=>这个是安全等于=，能够进行=null判断
+```<=>```这个是安全等于=，能够进行=null判断
+
+
+
+排序
+
+select 查询列表 from 表 where 筛选条件 order by 排序列表 asc|desc
+
+asc表示升序，desc表示降序，不写默认是升序
+
+order by 子句中可以支持单个字段、多个字段、表达式、函数、别名
+
+select * from employee order by age desc, score asc;
+
+常用函数
+
+length:返回字节长度
+
+length('张三hhh');
+
+concat：拼接字符串
+
+select concat(last_name,'_',first_name) 姓名 from employee;
+
+upper、lower 大小写转换
+
+select concat(upper(lase_name),lower(first_name)) 姓名 from employees;
+
+substr:字符切割
+
+select substr('一二三四五'，3) 结果;四五
+
+select substr('一二三四五'，1,3) 结果;一二三
+
+instr:返回子串第一次出现的索引，如果找不到返回0
+
+select instr('周瑜打黄盖，一个愿打一个愿挨','打') as 结果;3
+
+trim:去掉前后空格或者指定字符
+
+select trim(‘     测试‘      ) 结果; 测试
+
+select trim(‘a’ from ‘aaaa测aa试aaaaa‘      ) 结果; 测aa试
+
+lpad 左填充
+
+select lpad('测试',10,'-');-------测试
+
+rpad 又填充
+
+select rpad('测试',10,'-');测试-------
+
+replace 替换
+
+select replace('一个愿打一个愿挨','一个','张三') 结果;张三愿打张三愿挨
+
+
+
+
 
