@@ -1,3 +1,10 @@
+```sql
+-- 切换到哪个数据库
+grant all on schema ds_sdms to ds_task_sdms;
+-- 将视图授权给哪个用户
+grant all on schema ds_task_hz to ds_task_sdms;
+```
+
 USE 库名;在哪个数据库下执行
 
 USE student;
