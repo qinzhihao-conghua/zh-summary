@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/setup-node@v3
       with:
-          node-version: 14
+          node-version: 18
     - name: Checkout
       uses: actions/checkout@master
     # This example project is built using npm and outputs the result to the 'build' folder.
