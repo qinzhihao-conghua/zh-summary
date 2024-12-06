@@ -1,18 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>不要葱花</title>
-        <link>https://zh-summary.github.io/blog</link>
+        <link>https://zh-summary.github.io/zh-summary/blog</link>
         <description>博客系统 Blog</description>
         <lastBuildDate>Tue, 08 Nov 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
         <item>
             <title><![CDATA[第一篇]]></title>
             <link>https://zh-summary.github.io/zh-summary/blog/2022/11/08/hello-world</link>
-            <guid>第一篇</guid>
+            <guid>https://zh-summary.github.io/zh-summary/blog/2022/11/08/hello-world</guid>
             <pubDate>Tue, 08 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></description>
+            <content:encoded><![CDATA[<p>Welcome to this blog. This blog is created with <a href="https://v2.docusaurus.io/" target="_blank" rel="noopener noreferrer"><strong>Docusaurus 2 alpha</strong></a>.</p>
+<p>This is a test post.</p>
+<p>A whole bunch of other information.</p>]]></content:encoded>
+            <category>hello</category>
+            <category>docusaurus</category>
         </item>
     </channel>
 </rss>
