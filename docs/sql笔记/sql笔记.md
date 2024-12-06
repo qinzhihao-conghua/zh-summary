@@ -17,6 +17,15 @@ delete from 表名 where 要满足的条件;
 
 --更新数据
 update 表名 set 字段名=value where 要满足的条件;
+
+--删除模式
+DROP SCHEMA IF EXISTS 模式名称; 
+--删除用户拥有的数据库对象
+DROP OWNED BY db_mark_v1; 
+--删除用户
+DROP USER IF EXISTS 用户名称; 
+--删除角色
+DROP role IF EXISTS 角色; 
 ```
 
 USE 库名;在哪个数据库下执行
