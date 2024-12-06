@@ -35,7 +35,7 @@ const vdom=<h1>虚拟dom</h1>; //正确
 const vdom2='<h1>虚拟dom</h1>'; // 错误
 ```
 
-2. 标签中混入js表达式时要用=={ }==包裹
+2. 标签中混入js表达式时要用{ }包裹
 
 3. 样式的类名指定不要用class，要用className
 
@@ -45,7 +45,7 @@ const vdom2='<h1>虚拟dom</h1>'; // 错误
 
 6. 标签必须闭合
 
-==react中如果标签首字母大写表示组件，首字母小写表示普通的html标签==
+react中如果标签首字母大写表示组件，首字母小写表示普通的html标签
 
 # 关于组件
 
@@ -71,7 +71,7 @@ class ClassComponent extends React.Component{
 
 # state
 
-state目前来看相当于angular中的变量集合，主要采用对象方式存储，==要更改state中值，必须使用setState({要修改的变量:新的变量值})方法，每一次调用setState就触发一次render==
+state目前来看相当于angular中的变量集合，主要采用对象方式存储，要更改state中值，必须使用```setState({要修改的变量:新的变量值})```方法，每一次调用setState就触发一次render
 
 ```jsx
 class ClassComponent extends React.Component{
@@ -134,7 +134,7 @@ class ClassComponent extends React.Component{
 
 # props
 
-==props==用来接收传入组件内部的值，可以限制类型以及设置默认值，props既可以在类组件中使用，也可以在函数式组件中使用
+props用来接收传入组件内部的值，可以限制类型以及设置默认值，props既可以在类组件中使用，也可以在函数式组件中使用
 
 1. 类式组件中使用props
 
@@ -325,9 +325,9 @@ class ClassComponent extends React.Component{
 
 ```render```初始化渲染，状态更新之后
 
-==componentDidMount==组件挂载完毕，初始化
+componentDidMount组件挂载完毕，初始化
 
-==componentWillUnmount==组件将要卸载，收尾
+componentWillUnmount组件将要卸载，收尾
 
 ```unmountComponentAtNode```卸载组件
 
@@ -474,7 +474,7 @@ improt {Link,BrowserRouter，Route} from 'react-router-dom';
 </BrowserRouter>
 ```
 
-==一般组件和路由组件的区别==
+一般组件和路由组件的区别
 
 一般组件传递什么就能接收什么，路由组件会接收到三个固定的属性，history、location、match
 
@@ -504,7 +504,7 @@ Switch组件
 </Switch>
 ```
 
-==多级路由下引用的样式在刷新时候失效的问题==
+多级路由下引用的样式在刷新时候失效的问题
 
 history模式下的路由，如果写多级路由下，前面的路由path会被当做是请求路径，导致请求的数据与实际返回的数据MIME类型不符导致报警，从而样式失效
 
@@ -635,7 +635,7 @@ render(){
 export default widthRouter(Demo)
 ```
 
-===BrowserRouter和HashRouter==的区别
+=BrowserRouter和HashRouter的区别
 
 1、底层原理不同，BrowserRouter使用的是H5的history api，不兼容ie9及以下；HashRouter使用的是URL的哈希值。
 

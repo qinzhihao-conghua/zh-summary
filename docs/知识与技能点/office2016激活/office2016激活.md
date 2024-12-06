@@ -1,3 +1,7 @@
+---
+title: office2016激活
+---
+
 # 1、查看Office2016安装目录
 
 如果是默认安装，没有修改路径，是在C:Program FilesMicrosoft OfficeOffice16目录下，64位系统装32位office路径是C:Program Files  (x86)Microsoft OfficeOffice16，具体路径还得自行查看；

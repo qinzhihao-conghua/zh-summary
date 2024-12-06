@@ -1,108 +1,138 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-module.exports = {
+// @ts-check
+// `@type` JSDoc annotations allow editor autocompletion and type checking
+// (when paired with `@ts-check`).
+// There are various equivalent ways to declare your Docusaurus config.
+// See: https://docusaurus.io/docs/api/docusaurus-config
+
+import { themes as prismThemes } from 'prism-react-renderer';
+
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
   title: '博客系统',
-  tagline: 'The tagline of my site',
+  tagline: '个人文档总结',
+  favicon: 'img/favicon.ico',
+
+  // Set the production url of your site here
   url: 'https://zh-summary.github.io',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/zh-summary/',
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: 'qinzhihao-conghua', // Usually your GitHub org/user name.
+  projectName: 'zh-summary', // Usually your repo name.
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'qinzhihao-conghua', // Usually your GitHub org/user name.
-  // trailingSlash: true,
-  projectName: 'zh-summary', // Usually your repo name.
-  themeConfig: {
-    // 配置公告栏
-    // announcementBar: {
-    //   id: "note",
-    //   content: "这里是公告栏",
-    //   backgroundColor: "#fafbfc",
-    //   textColor: "#091E42",
-    // },
-    // 收起侧边看
-    hideableSidebar: true,
-    // 导航菜单
-    navbar: {
-      title: '不要葱花',
-      logo: {
-        alt: 'Logo',
-        src: 'img/logo.jpg',
-      },
-      // 配置头部菜单导航，一一对应根目录下的文件夹
-      items: [
-        { to: '/', label: '首页', position: 'right' },
-        {
-          to: 'docs',
-          activeBasePath: 'docs',
-          label: '文档',
-          position: 'right',
-        },
-        // 取消博客部分
-        { 
-          to: 'blog', 
-          activeBasePath: 'blog',
-          label: '博客', 
-          position: 'right' 
-        },
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
-    },
-    // 页面底部信息
-    footer: {
-      style: 'dark',
-      links: [
-        // {
-        //   title: 'More',
-        //   items: [
-        //     {
-        //       label: 'GitHub',
-        //       href: 'https://github.com/qinzhihao-conghua',
-        //     },
-        //   ],
-        // },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} 不要葱花博客 Inc. Built with Docusaurus.`,
-    },
+
+  // Even if you don't use internationalization, you can use this field to set
+  // useful metadata like html lang. For example, if your site is Chinese, you
+  // may want to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
   },
+
   presets: [
     [
-      '@docusaurus/preset-classic',
-      {
+      'classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/qinzhihao-conghua',
         },
         blog: {
-          path: "./blog",
+          showReadingTime: true,
+          // path: "./blog",
           // 设置成/斜杠就是默认网站的首页
           // routeBasePath: "/",
           blogSidebarTitle: "所有文章",
           blogSidebarCount: 'ALL',
-          showReadingTime: true,
           feedOptions: {
-            type: "all",
-            title: "不要葱花",
-          }
+            type: ['rss', 'atom'],
+            xslt: true,
+            title: "不要葱花"
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/qinzhihao-conghua',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
-      },
+      }),
     ],
   ],
-  // 通过插件配置多个博客菜单
-  plugins: [
-    // 在这里配置多个博客页面
-    // [
-    //   '@docusaurus/plugin-content-blog',
-    //   {
-    //     id: 'demo',
-    //     routeBasePath: 'demo',
-    //     path: './demo',
-    //   },
-    // ],
-  ]
+
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      // Replace with your project's social card
+      image: 'img/docusaurus-social-card.jpg',
+      // 配置公告栏
+      // announcementBar: {
+      //   id: "note",
+      //   content: "这里是公告栏",
+      //   backgroundColor: "#fafbfc",
+      //   textColor: "#091E42",
+      // },
+      // 收起侧边看
+      // hideableSidebar: true,
+      navbar: {
+        title: '不要葱花',
+        logo: {
+          alt: '不要葱花 Logo',
+          src: 'img/logo.jpg',
+        },
+        items: [
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'right',
+            label: '文档',
+          },
+          { to: '/blog', label: 'Blog', position: 'right' },
+          {
+            href: 'https://github.com/facebook/docusaurus',
+            label: 'GitHub',
+            position: 'right',
+          },
+        ],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          // {
+          //   title: 'More',
+          //   items: [
+          //     {
+          //       label: 'Blog',
+          //       to: '/blog',
+          //     },
+          //     {
+          //       label: 'GitHub',
+          //       href: 'https://github.com/facebook/docusaurus',
+          //     },
+          //   ],
+          // }
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} 不要葱花博客 Inc. Built with Docusaurus.`,
+      },
+      prism: {
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
+      },
+    }),
 };
+
+export default config;
