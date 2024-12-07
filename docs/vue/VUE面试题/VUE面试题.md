@@ -365,7 +365,7 @@ export default {
 
 vuex的使用借助官方提供的一张图来说明:
 
-![在这里插入图片描述](https://mmbiz.qpic.cn/mmbiz_png/KfGu3WwVIa2FJStysG2Wbv9wuRyNAwVm69TAx8fCxsfibWayA1CJndV5WrVV9wcQgdmhT2FgS1ER8nFfDulxByg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)在这里插入图片描述
+![vuex描述](./640.png)
 
 Vuex有5种属性: 分别是 state、getter、mutation、action、module;
 
