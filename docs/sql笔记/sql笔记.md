@@ -1,3 +1,7 @@
+---
+title: sql笔记
+---
+
 ```sql
 -- 切换到哪个数据库
 grant all on schema ds_sdms to ds_task_sdms;

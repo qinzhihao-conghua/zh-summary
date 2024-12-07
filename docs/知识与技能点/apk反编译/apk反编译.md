@@ -1,3 +1,7 @@
+---
+title: apk反编译
+---
+
 ## 一、下载软件
 首先下载apktool.bat和apktool.jar
 官网地址：https://ibotpeaches.github.io/Apktool/install/
