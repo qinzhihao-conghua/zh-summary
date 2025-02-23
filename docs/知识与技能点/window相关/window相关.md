@@ -1,5 +1,5 @@
 ---
-title:window相关
+title: window相关
 ---
 
 # 终止进程

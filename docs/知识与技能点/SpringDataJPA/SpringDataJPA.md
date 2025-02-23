@@ -1,3 +1,7 @@
+---
+title: SpringDataJPA
+---
+
 # SpringDataJPA-开篇
 
 ## 1.入门概念
@@ -27,8 +31,10 @@ JPA并不是一个框架而是一个规范，知名的 Hibernate 便是JPA的一
 </dependency>
 ```
 
+## 初始化
 
-## 2.2 application.yml
+###  2.2 application.yml
+
 数据源配置
 
 ```yaml
@@ -42,7 +48,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 ```
 
-2.3创建库表
+### 2.3创建库表
 
 ```sql
 --使用jpa_db数据库
@@ -71,7 +77,7 @@ INSERT INTO tbl_deposit(saving_name,descrip) VALUES('存本取息五年','按月
 select *from tbl_deposit;
 ```
 
-## 2.4创建实体类
+### 2.4创建实体类
 
 此处仅描述"用户实体类"的创建，作入门举例。
 
@@ -98,7 +104,7 @@ public class Deposit{ //未指定name属性，默认的表名是类名(小写)
 3. @Column 注解用于标识表的字段与实体属性的映射关系，name 属性用于标识表的字段名;
 4. SpringDataJPA 无需任何配置自动完成从下划线到驼峰命名的转换。
 
-## 2.5 自定义JPA操作接口
+### 2.5 自定义JPA操作接口
 
 这里的操作接口，对等的概念就是 MyBatis 的 mapper 接口，JPA 习惯保存于"repository"包。
 
@@ -186,11 +192,11 @@ name：表名，缺省则表名默认为@Entity注解的name
 5. precision和scale：表示精度，当实体属性类型为BigDecimal时，precision表示总长度(默认38)，scale表示小数点的位数(默认2)，注意scale属性不支持实体属性类型Double与Float。
 6. columnDefinition：字段定义，包含类型、长度、默认值和注释等等，类比建表的sq1中字段定义的部分
 
-## 2.4@Id
+### 2.4 @Id
 
 作用：指定作为主键的实体属性
 
-## 2.5 @GeneratedValue
+### 2.5 @GeneratedValue
 
 作用：指定作为自增列的实体属性
 
@@ -428,7 +434,7 @@ depositRepository.deleteAllInBatch(depositList);// where id =? or id = ?
 
 当前面所讲解的删除接口无法满足实际开发需求时，可以自定义删除
 
-## 3.1自定义删除方法
+### 3.1自定义删除方法
 
 这里谈到的自定义删除SQL，需要使用 @Transactional+ @Modifying+ @Query 三个注解搭配完成
 
@@ -444,11 +450,7 @@ public interface DepositRepository extends JpaRepository<Deposit, Integer>{
 }
 ```
 
-
-
-
-
-## 3.2 声明式删除方法
+### 3.2 声明式删除方法
 
 SpringDataJPA提供了一种声明式的删除方法，允许开发者通过方法名来定义删除逻辑。方法底层的SQL语句由Spring Data JPA 自动生成，要求方法名需要以delete或remove开头。
 
@@ -517,7 +519,7 @@ public class Deposit{
 }
 ```
 
-## 1.2 @SQLDelete
+### 1.2 @SQLDelete
 
 作用：将 SpringDataJPA 自动生成的删除语句替换为自定义的语句
 
@@ -535,7 +537,7 @@ public class Deposit{
 }
 ```
 
-## 1.3 测试逻辑删除
+### 1.3 测试逻辑删除
 
 ```java
 //CrudRdpository-> deleteById(id)
@@ -604,7 +606,7 @@ public class Deposit{
 }
 ```
 
-## 3.2 对修改的影响
+### 3.2 对修改的影响
 
 记录行逻辑删除之前可正常修改;一旦某些记录被逻辑删除了，理论上来说是不可再修改了;
 
@@ -626,7 +628,7 @@ depositRepository.save(deposit);
 int cancelDeletedById(Integer savingId);
 ```
 
-## 3.3 @PreRemove
+### 3.3 @PreRemove
 
 当一个实体被删除之前，会调用被 @PreRemove 注解标记的方法
 
@@ -762,15 +764,15 @@ public interface QueryByExampleExecutor<T>{
 }
 ```
 
-# 3.使用JPQL实现查询
+## 3.使用JPQL实现查询
 
-## 3.1什么是JPQL
+### 3.1什么是JPQL
 
 定义：JPQL的全称是"Java Persistence Query Language"，中文译作"]ava持久化查沟语言"。这是一种以面向对象的方式操作数据库的语言。
 原理：JPQL的特征与原生SQL语句类似，但完全面向对象，通过类名和属性访问，而不是使用表名和表的字段。这种语言最终会被编译成针对不同底层数据库的SQL查询，从而屏蔽了不同数据库之间的差异。
 注意：JPQL 不支持使用INSERT，对于 UPDATE、DELETE操作，必须使用注解@Modifying。
 
-## 3.2定义JPQL查询方法
+### 3.2定义JPQL查询方法
 
 查询"湖南"的用户列表
 
@@ -873,7 +875,7 @@ public interface QueryByExampleExecutor<T>{
 2. ExampleMatcher：查询示例的匹配器，提供的匹配API包括matching()、matchingAny()等等
 3. 封装1和2的Example对象：通过Example.of(Bean,ExampleMatcher)构建Example对象
 
-## 2.2基本使用
+### 2.2基本使用
 
 1.精确查询
 
@@ -952,7 +954,7 @@ Example<User>example = xample.of(searchUser, ExampleMatcher.matching().withInclu
 //注:JPAUtils.isNullProperties(searchUser,"cusAdd")用于忽略其他null的属性查询条件
 ```
 
-## 2.3动态查询
+### 2.3动态查询
 
 动态查询的条件，在 QueryByExarmpleExecutor 接口中可通过如下两种方式连接起来
 
@@ -992,7 +994,7 @@ Example<User> example = Example.of(
 List<User> userList = userRepository.findAll(example):
 ```
 
-## 2.4接口小结
+### 2.4接口小结
 
 "QBE"查询的优点:
 
@@ -1002,13 +1004,13 @@ List<User> userList = userRepository.findAll(example):
 
 "QBE"查询的不足:
 
-1. 不适合数字类型的大小比较(>、<、>=、<=)
+1. 不适合数字类型的大小比较```(>、<、>=、<=)```
 2. 不适合 between...and、in、is null 等形式的查询
 3. 常用来处理简单的查询，不支持复杂的连接查询、嵌套查询、分组查询等
 
 ## 3.JpaSpecifcationExecutor接口
 
-## 3.1接口概述
+### 3.1接口概述
 
 JpaSpecificationExecutor是 Spring DataJPA 提供的一个接口，它允许执行复杂的查询逻辑，特别是基于Specification 的动态查询。
 
@@ -1054,7 +1056,7 @@ public interface UserRepository extends JpaRepository<User,Integer>,JpaSpecifica
 //注意:必须继承父接口 JpaRepository，否则无法注入 UserRepository 的 Bean 对象
 ```
 
-## 3.2基本使用
+### 3.2基本使用
 
 先从最基本的查询开始:
 
@@ -1104,7 +1106,7 @@ cb.isFalse(root.get("isDeleted"));
 cb.isTrue(root.get("isDeleted"));
 ```
 
-## 3.3动态查询
+### 3.3动态查询
 
 动态查询的条件，在JpaSpecificationExecutor接口中可通过如下式连接起来
 
@@ -1134,7 +1136,7 @@ List<user> userList = userRepository.findAll((root,query,cb)->{
 });
 ```
 
-## 3.4接口小结
+### 3.4接口小结
 
 "QBC"查询的优点：适用范围广，几乎可以实现所有查询的场景
 "QBC"查询的不足：每个查询都需要手动构建Specification，提高了复杂度、增加了代码量
@@ -1195,7 +1197,7 @@ QBean 是查询时的必要辅助类，可以通过面向对象的方式生成�
 
 配置好插件后，可执行maven的"compile"自动生成QBean类
 
-## 4.2基本使用
+### 4.2基本使用
 
 将自定义的数据访问接口继承 QuerydslPredicateExecutor接口，就可开始使用 QueryDSL 了。
 
@@ -1230,7 +1232,7 @@ predicate = user.cusAdd.isNull();
 List<User> userList = (List<User>) userRepository.findAll(predicate);
 ```
 
-## 4.3动态查询
+### 4.3动态查询
 
 ```java
 // 创建QBean对象
@@ -1257,7 +1259,7 @@ List<User> userList =(List<user>)userRepository.findAll(builder);
 userList.forEach(System.out::println);
 ```
 
-## 4.4框架小结
+### 4.4框架小结
 
 优势:
 
@@ -1328,7 +1330,7 @@ Example<Deposit> example = Example.of(
 Page<Deposit> page = depositRepository.findAll(example, pageable);
 ```
 
-## 2.3 控制分页规格
+### 2.3 控制分页规格
 
 分页规格通常包含:页尺寸，当前页码，(是否有)上一页、(是否有)下一页、首尾页判断等方面
 Pageable 接口提供了方法控制上述的各规格参数
@@ -1355,7 +1357,7 @@ int pagesize = pageable.getPagesize();
 User searchUser=new User();
 ```
 
-## 2.4 获得查询数据
+### 2.4 获得查询数据
 
 分页查询的数据，包含:当前页面的数据集合、总页数、总数据量、页尺寸等
 Page 接口提供了方法获取上述各项数据
@@ -1498,7 +1500,7 @@ depositList.forEach(System.out::println);
 1. 主控方：员工信息表(tbl_emp) -> 关联字段(join_id)
 2. 被控方：入职信息表(tbl join) -> 关联字段(id)
 
-## 3.1 @JoinColumn
+### 3.1 @JoinColumn
 
 @JoinColumn 用于设置表的关联字段，通常在“主控方”的实体中使用。语法如:
 
@@ -1519,11 +1521,11 @@ public class Employe {
 }
 ```
 
-## 3.2 @OneToOne
+### 3.2 @OneToOne
 
 @OneToOne 注解用于定义两个实体之间的一对一关系，可在关系的双方编写或其中一方编写,具体的编写位置是在实体的关联属性上。
 
-## 3.3 单向关联与双向关联
+### 3.3 单向关联与双向关联
 
 单向和双向关联的区别就在于,两个表的数掘是否需要互相知道;
 
@@ -1541,7 +1543,7 @@ public class Employe {
 }
 ```
 
-## 3.4 双向关联的循环引用问题
+### 3.4 双向关联的循环引用问题
 
 在处理双向关联时可能会导致循环引用,从而引发 StackOverflowError(堆栈溢出)的错误，如:
 
@@ -1583,7 +1585,7 @@ public class Employe {
 }
 ```
 
-## 4.2 @OneToMany
+### 4.2 @OneToMany
 
 部门与员工，是属于一对多的关系
 
@@ -1637,7 +1639,7 @@ public class Job{
 }
 ```
 
-## 5.2 @JoinTable
+### 5.2 @JoinTable
 
 在 @ManyToMany 关系中，@JoinTable 注解用于指定关系表，以及关联的字段
 
@@ -1657,4 +1659,451 @@ public class Employe{
 
 1. 双向关联的循环引用问题
 2. 数据延迟加载，需要在方法上加上事务控制。
+
+# SpringDataJPA-级联操作
+
+## 1.级联的含义
+
+级联(cascade)，是在建立了关联关系的实体之间，由一方对象执行操作，另一方对象会同步执行相同操作的现象。级联的目的在于提高数据管理的效率。
+
+1. 新增员工信息，员工的入职信息也需要新增
+2. 删除一篇文章时，相关的评论也需要被删除
+
+在 SpringData]PA 中实现级联，可通过 @OneToOne|@OneToMany|@ManyToOne@ManyToMany注解的属性"cascade"来完成。如:
+
+```java
+@ManyToMany(cascade = CascadeType.ALL)// 全部级联
+@ManyToMany(cascade = cascadeType.PERSIST)// 级联新增
+@ManyToMany(cascade = CascadeType.REMOVE)// 级联删除
+@ManyToMany(cascade = CascadeType.MERGE)// 级联更新
+```
+
+本集涉及到的数据表描述如下:
+注意:数据库库之中并未设计表间的主-外键，而是交由 java 程序处理。
+
+1.入职信息表(tbl_join)
+
+| id     | join_date |
+| ------ | --------- |
+| 入职id | 入职日期  |
+
+2.员工信息表(tbl_emp)
+
+| id     | emp_name | emp_gender | join_id | dept_id | emp_age  |
+| ------ | -------- | ---------- | ------- | ------- | -------- |
+| 员工id | 员工姓名 | 员工性别   | 入职id  | 部门id  | 员工年龄 |
+
+3.任务信息表(tbl_job)
+
+| id     | job_name |
+| ------ | -------- |
+| 任务id | 任务名字 |
+
+4.员工-任务关系表(tbl_emp_job)
+
+| id     | emp_id | job_id |
+| ------ | ------ | ------ |
+| 关系id | 员工id | 任务id |
+
+## 2.级联新增
+
+级联方式设定为:CascadeType.PERSIST
+
+### 2.1单向关联的级联新增
+
+单向关联时，因被控方未设置关联属性，所以仅主控方新增才引发级联新增，注意必须为主控方的关联属性赋值。
+
+```java
+//主控方新增(单向一对一)
+Employe employe = new Employe(null,"王二麻子","男",33,3,null);
+Join join =new Join(null,new Date());
+// 省略仅新增employe，不执行级联
+employe.setJoin(join);
+employeRespository.save(employe);
+```
+
+### 2.3双向关联的级联新增
+
+双向关联时，双方新增都可以引发级联新增，注意必须为操作方的关联属性赋值。
+
+```java
+// 主控方新增(双向一对一)
+Employe employe = new Employe(null,"王二麻子",，"男"，33，1，null);
+Join join =new Join(null,new Date()，null);
+employe.setJoin(join);//不可省略
+//join.setEmploye(employe);// 可省略
+employeRespository.save(employe);
+```
+
+```java
+// 被控方新增(双向一对一)
+Employe employe =new Employe(null，"王二麻子""男"，33，1，nul1);
+Join join = new Join(null,new Date()，null);
+employe.setJoin(join);//省略则入职id为nu11
+join.setEmploye(employe);//不可省略
+joinRespository.save(join);
+```
+
+### 2.4多对多关联的级联新增
+
+多对多双向关联时，双方新增都可以引发级联新增，注意必须为操作方的关联属性赋值。
+
+```java
+//主控方新增(双向多对多)
+Employe employe = new Employe(null,"王二子","男",33,3,1,null);
+Job job =new Job(nu]l,"销售"null);
+employe.setJobList(Arrays.asList(job));//不可省略
+//job.setEmployeList(Arrays.asList(employe));//可省略
+employeRespository.save(employe);
+```
+
+```java
+// 被控方新增(双向多对多)
+Employe employe = new Employe(null,"王二麻子","男",33,3,1,null);
+Job job = new Job(null,"销售"null);
+employe.setJobList(Arrays.asList(job));//省略则不添加关系表数据
+job.setEmployeList(Arrays.asList(employe));//不可省略
+jobRespository.save(job);
+```
+
+## 3.级联删除
+
+级联方式设定为:CascadeType.REMOVE
+
+### 3.1单向关联的级联删除
+
+单向关联时，仅主控方删除才引发级联删除。
+
+```java
+// 主控方删除
+employeRespository.deleteById(1);//既删除employe,又删除join
+// 被控方删除
+joinRespository.deleteById(2);//仅删除join,不删除employe
+```
+
+### 3.2 双向关联的级联删除
+
+双向关联时，双方都可引发级联删除，删除数据范围较广极易误删，不推荐配置!
+
+```java
+// 主控方删除
+employeRespository.deleteById(1);//既删除employe,又删除join
+// 被控方删除
+joinRespository.deleteById(2);//既删除employe,又删除join
+```
+
+### 3.3多对多关联的级联删除
+
+多对多的级联删除是指任意一方执行删除操作时，级联删除另一方表和关系表中的相关数据。
+
+```java
+// 主控方删除
+employeRespository.deleteById(1); // 既删除employe,又删除关系表数据,还删除job
+//被控方删除
+jobRespository.deleteById(3);//既删除job,又删除关系表数据,还删除employe
+```
+
+
+小结:多对多的级联删除需谨慎再谨慎，不推荐配置级联删除!
+
+## 4.级联更新
+
+级联方式设定为:CascadeType.MERGE
+
+### 4.1单向关联的级联修改
+
+单向关联时，因被控方未设置关联属性，所以仅主控方更新才引发级联更新。
+
+```java
+// 主控方对象
+Employe employe =employeRespository.findA1l().get(0);
+//修改主控方对象的年龄属性
+employe.setEmpAge(35):
+//修改关联对象的入职日期属性(重点)
+employe.getJoin().setJoinDate(new Date());
+//提交主控方对象的修改(持久化会同样作用到关联对象)
+employeRespository.save(employe);
+```
+
+### 4.2 双向关联的级联修改
+
+双向关联时，主控方发起级联修改的编码与单向关联一样，这里只给出被控方如何发起级联修改。
+
+```java
+// 被控方对象
+Join join = joinRespository.findAll().get(0);
+//修改被控方对象的年龄属性
+join.setJoinDate(new Date());
+// 修改关联对象的年龄属性(重点)
+join.getEmploye().setEmpAge(35);
+//提交被控方对象的修改(持久化会同样作用到关联对象)
+joinRespository.save(join);
+```
+
+### 4.3多对多关联的级联修改
+
+多对多的级联修改是指任意一方执行修改操作时，级联修改另一方表中的相关数据;
+由于获取"多方"的数据时采用延迟加载，方法需要添加 @Transactional注解，但是该注解默认情况下不会自动提交，因此还需配合 @Commit 注解。
+
+```java
+// 主控方对象
+Employe employe =employeRespository.findAll().get(0);
+//修改主控方对象的年龄属性
+employe.setEmpAge(35);
+//修改关联对象的属性(重点)
+employe.getJobList().get(0).setJobName("xuqiufenxi");
+employe.getJobList().add(jobRespository.findById(3).get());
+employe.getJobList().remove(jobRespository.findById(1).get());
+employeRespository.save(employe);
+//提交主控方对象的修改(持久化会同样作用到关系表数据)
+employeRespository.save(employe);
+```
+
+```java
+// 被控方对象
+Job job =jobRespository.findById(1).get();
+//修改被控方对象的任务名字属性
+job.setJobName("develop");
+//修改关联对象的年龄属性(重点)
+job.getEmployeList().get(0).setEmpAge(40);
+//提交被控方对象的修改(持久化会同样作用到关系表数据)
+jobRespository.save(job);
+```
+
+## 5.总结
+
+单向关联时，仅主控方才可引发级联操作;
+双向关联时，主、被控双方均可引发级联操作;
+不建议配置级联删除。
+
+# SpringDataJPA-审计功能
+
+## 1.审计的含义
+
+审计(Auditing)，原意是对资料作出证据搜集及分析，以评估企业财务状况，最后就资料及一般公认准则之间的相关程度，作出审计结论及报告。
+JPA 提供审计的相关注解，可轻松实现上述的自动跟踪，减少代码量。
+
+```java
+//创建新增的实体
+Deposit deposit =new Deposit();
+deposit.setsavingName("存本取息五年");
+deposit.setDescrip("按月支取利息");
+//手动维护审计相关字段
+deposit.setcreateBy("张三");
+deposit.setCreateAt(LocalDateTime.now());
+deposit.setupdateBy("张三");
+deposit.setUpdateAt(LocalDateTime .now());
+// 执行新增
+depositRepository.save(deposit);
+```
+
+```java
+//创建新增的实体
+Deposit deposit=new Deposit();
+deposit.setsavingName("存本取息五年");
+deposit.setDescrip("按月支取利息");
+// 执行新增
+depositRepository.save(deposit);
+```
+
+在 SpringData]PA 中实现审计相关字段自动维护，可通过下面几个注解来完成
+
+```java
+@EnableJpaAuditing //开启JPA审计功能
+@CreatedDate // 跟踪创建时间
+@LastModifiedDate // 跟踪修改时间
+@CreatedBy // 跟踪创建人
+@LastModifiedBy // 跟踪修改人
+@EntityListeners //监听实体的增删改查操作
+```
+
+## 2.开启审计
+
+@EnableJpaAuditing 注解用于启用 JPA的审计功能，该注解仅可作用于类上面，常见在应用的启动类或者 JPA配置类上进行添加
+
+```java
+
+@Configuration
+@EnableJpaAuditing //启用 JPA 的审计功能
+public class Jpaconfiguration{
+    //...代码<略>...
+}
+```
+
+## 3.监听实体
+
+### 3.1 @EntityListeners
+
+@EntityListeners 注解用于监听实体的CURD操作(没错，查询也可监听);
+该注解仅可作用于类上面;该注解仅有一个 Class 数组类型的 value 属性，用于指定监听器类。
+
+```java
+@Target({TYPE})
+@Retention(RUNTIME)
+public @interface EntityListeners{
+    /**The callback listener classes */
+    Class[] value();
+}
+```
+
+### 3.2 监听器类
+
+JPA 提供的监听器类 AuditingEntityListener ，审计功能就是通过该类中的方法实现监听的。
+
+```java
+@EntityListeners(value ={AuditingEntityListener.class,})
+public class peposit{
+	//...代码<略>...
+}
+```
+
+```java
+@Configurable
+public class AuditingEntityListener{
+    //...其他代码<略>..
+    @PrePersist //实体即将被保存到数据库之前调用
+    public void touchForcreate(object target){
+        //...代码<略>...11
+    }
+
+    @PreUpdate //实体即将被更新到数据库之前调用
+    public void touchForupdate(object target){
+        //...代码<略>。
+    }
+}
+// 补充:用法见"自定义监听器"
+@PostPersist:实体已经被成功保存到数据库之后调用
+@Postupdate:实体已经被更新到数据库之后调用
+@PreRemove:实体即将从数据库中删除之前调用。
+@PostRemove:实体已经被从数据库中删除之后调用
+@PostLoad:实体从数据库加载到内存后调用[查询]
+//注意:上述7个注解只能作用在方法上
+```
+
+## 4.跟踪创建时间和修改时间
+
+### 4.1 @CreatedDate
+
+@CreatedDate 注解用于跟踪创建时间，该注解可作用于属性、方法和其他注解上。
+
+```java
+@CreatedDate
+private LocalDateTime createAt;//创建时间
+```
+
+### 4.2 @LastModifedDate
+
+@LastModifiedDate 注解用于跟踪修改时间，该注解可作用于属性、方法和其他注解上。
+
+```java
+@LastModifiedDate
+private LocalDateTime updateAt;//修改时间
+```
+
+### 4.3 测试
+
+在前述增加实体的代码基础上，注释掉创建时间、修改时间的编码,由相关注解自动填充其值
+
+修改新增的实体，观察createAt和updateAt修改前后的值变化
+
+## 5.跟踪创建人和修改人
+
+### 5.1 @CreatedBy
+
+@CreatedBy 注解用于跟踪创建人信息，该注解可作用于属性、方法和其他注解上。
+
+```java
+@CreatedBy
+private string createBy; //创建人
+```
+
+### 5.2 @LastModifedBy
+
+@LastModifiedBy 注解用于跟踪修改人信息，该注解可作用于属性、方法和其他注解上。
+
+```java
+@LastModifiedBy
+private string updateBy;//修改人
+```
+
+### 5.3 AuditorAware接
+
+跟踪创建人和修改人之前，JPA 需要事先知晓以何种形式描述被跟踪人，例如:
+
+```java
+@CreatedBy
+private string createBy;//使用字符串描述，例如:用户名字符串表示被跟踪人
+@CreatedBy
+private Integer createBy;//使用Integer描述，例如:用户Id表示被跟踪人
+@CreatedBy
+private User createBy;//使用User类描述，例如:用户实体表示被跟踪人
+```
+
+在做审计的实体类上确认被跟踪人的描述形式以后，还需要确认审计属性的值如何填充。
+
+JPA提供了 AuditorAware 接口，用于提供创建人和修改人的值。
+
+```java
+@Configuration
+@EnableJpaAuditing
+public class Jpaconfiguration{
+    @Bean
+    public AuditorAwarekstring> auditorAware(){
+        return new AuditorAware<string>(){
+            @Override
+            public optional<string> getCurrentAuditor(){
+                //使用字符串描述被跟踪人(通常是当前登录的用户)
+                return optional.of("老李");
+            }
+        }
+    }
+}
+```
+
+### 5.4测试
+
+1.在前述增加实体的代码基础上，注释掉创建人、修改人的编码，由相关注解自动填充其值
+
+2.重新测试增加实体，手动设置创建人、修改人的值，观察createBy和updateBy的值
+
+3.修改新增的实体，手动设置创建人、修改人的值，观察createBy和updateBy修改前后的值变化
+
+小结:通过上述测试得知，新增实体时 AuditorAware 接口最终决定创建人、修改人的值，修改实体时可手动决定创建人的值，无法手动决定修改人的值。
+
+## 6.自定义监听器
+
+仅仅使用 JPA 提供的监听器无法整合业务(例如:通过日志记录实体数据变化的过程)，因此可以自定义审计监听器。
+
+```java
+@slf4j
+public class MyAuditingEntityListener{
+    @PostLoad
+	private void postLoad(object entity){
+    	log.info("查询{}"，entity);
+    }
+    @PrePersist
+    private void prePersist(object entity){
+        log.info("新增前 {}"，entity);
+    }
+    @PostPersist
+    private void postPersist(object entity){
+        log.info("新增后 {}"，entity);
+    }
+    @PreUpdate
+    private void preUpdate(object entity){
+        log.info("更新前 {}"，entity);
+    }
+    @PostUpdate
+    private void postupdate(object entity){
+        log.info("更新后 {}"，entity);
+    }
+    @PreRemoveprivate void preRemove(object entity){
+        log.info("删除前 {}"，entity);
+    }
+    @PostRemove
+    private void postRemove(object entity){
+        log.info("删除后 {}"，entity);
+    }
+}
+```
 
