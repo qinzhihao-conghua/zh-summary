@@ -210,7 +210,7 @@ spring:
 ```
 
 ## 4.查看SQL语句
-可以在application.yml文件中配置 SpringData]PA 执行操作时显示对应的SQL命令
+可以在application.yml文件中配置 SpringDataJPA 执行操作时显示对应的SQL命令
 
 ```yaml
 spring:
@@ -652,7 +652,7 @@ public class Deposit{
 
 ## 1.查询方式分类
 
-SpringData]PA 提供了四种查询的方式，分别是
+SpringDataJPA 提供了四种查询的方式，分别是
 
 1. 继承 JpaRepository 接囗
 2. 使用 JPQL 实现查询
@@ -1002,8 +1002,8 @@ List<User> userList = userRepository.findAll(example):
 
 "QBE"查询的不足:
 
-1. 不适合数字类型的大小比较(>、<、>=、<=)
-2. 不适合 between...and、in、is null 等形式的查询
+1. 不适合数字类型的大小比较```(>、<、>=、<=)```
+2. 不适合 ```between...and、in、is null``` 等形式的查询
 3. 常用来处理简单的查询，不支持复杂的连接查询、嵌套查询、分组查询等
 
 ## 3.JpaSpecifcationExecutor接口
