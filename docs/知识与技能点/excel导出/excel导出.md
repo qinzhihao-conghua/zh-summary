@@ -4,21 +4,17 @@ title: excel导出
 
 
 
-以往项目中前端**excel**导出基本都是```xlsx-js```实现，唯一不足的地方就是不能自定义样式，这里列举两个库进行导出，其中```xlsx-js-style```是基于```xlsx-js```再次封装，实现了样式的自定义，api与```xlsx-js```是一致的
-
-
-
-excel导出主要依赖xlsx.js库
+以往项目中前端**excel**导出基本都是```xlsx-js```实现，唯一不足的地方就是不能自定义样式，这里列举三个库进行导出，其中```xlsx-js-style```是基于```xlsx-js```再次封装，实现了样式的自定义，api与```xlsx-js```是一致的，exceljs相比之下更好用
 
 ## xlsx-js
 
-文档地址
+### 文档地址
 
 ```
 https://github.com/rockboom/SheetJS-docs-zh-CN
 ```
 
-整理封装
+### 整理封装
 
 ```javascript
 import * as XLSX from 'xlsx';
@@ -95,13 +91,13 @@ ws['!cols'] = [{ wpx: 100 }, { wpx: 200 }];
 
 ## xlsx-js-style.js
 
-文档地址
+### 文档地址
 
 ```
 https://gitbrent.github.io/xlsx-js-style/
 ```
 
-封装
+### 封装
 
 ```javascript
 import * as XLSX from 'xlsx-js-style';
@@ -239,15 +235,15 @@ ws["A1"] = {
 }
 ```
 
-## 使用参考
+### 使用参考
 
 ![image-20221111092822212](image-20221111092822212.png)
 
-## 效果
+### 效果
 
 ![image-20221111092913686](image-20221111092913686.png)
 
-## 数据行单元格合并参考
+### 数据行单元格合并参考
 
 
 
@@ -271,3 +267,112 @@ data.forEach((item: Array<any>, index) => {
 ```
 
 ![image-20221114095102091](image-20221114095102091.png)
+
+## exceljs
+
+### 文档地址
+
+```
+https://github.com/exceljs/exceljs
+```
+
+### 使用
+
+包含了合并单元和，边框设置，宽高，图片等用法
+
+```javascript
+exportExcel() {
+    const tempData = [
+        ['', '', '', '', '', ``, '', '', ''],
+        ['', '', '', '', '', ``, '', '标题', ''],
+        ['', '', '', '', '', ``, '', '', ''],
+        ['', '', '', '', '', ``, '', '', ''],
+        ['', '', '', '', '', ``, '', '', ''],
+        ['标题：', '', '', '', '', '标题', '', '', ''],
+        ['标题：', '', '', '', '', ``, '', '', ''],
+        ['标题：', '', '', '', '', ``, '', '', ''],
+        ['标题：', '', '', '', '', ``, '', '', ''],
+        ['标题', '标题', '标题', '标题', '标题', '标题', '标题', '标题', '标题']
+    ];
+	// 数据处理
+    console.log('保存为', tempData);
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Sheet1');
+    worksheet.addRows(tempData);
+    worksheet.mergeCells('H2:I2');
+    worksheet.mergeCells('H3:I3');
+    worksheet.mergeCells('A6:E6');
+    worksheet.mergeCells('F6:I6');
+    worksheet.mergeCells('A7:I7');
+    worksheet.mergeCells('A8:I8');
+    worksheet.mergeCells('A9:I9');
+    // worksheet.mergeCells(`A${this.crList.length + 10}:I${this.crList.length + 10}`);
+    worksheet.columns.forEach((column, index) => {
+        // wrapText: true
+        column.alignment = { vertical: 'middle' };
+        if (index === 0) {
+            column.alignment.horizontal = 'center';
+        }
+        if (index > 0 && index <= 3) {
+            column.width = 15;
+        }
+        if (index > 3) {
+            column.width = 20;
+        }
+    });
+    // worksheet.columns[8].alignment.horizontal = 'center';
+    worksheet.getCell('H2').alignment = { horizontal: 'center', vertical: 'middle' };
+    worksheet.getCell('H3').border = {
+        // top: { style: 'thin', color: { argb: 'FF00FF00' } },
+        // left: { style: 'thin', color: { argb: 'FF00FF00' } },
+        bottom: { style: 'thin', color: { argb: 'FF000000' } }
+        // right: { style: 'thin', color: { argb: 'FF00FF00' } }
+    };
+    worksheet.getCell('A7').alignment.horizontal = 'left';
+    worksheet.getCell('A8').alignment.horizontal = 'left';
+    worksheet.getCell('A9').alignment.horizontal = 'left';
+    worksheet.eachRow((row) => row.height = 20);
+    const img = new Image();
+    img.src = 'assets/img/exportLogo.png';
+    img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const dataURL = canvas.toDataURL('image/png');
+        // 将Base64编码字符串解码为原始ASCII字符串
+        const binaryData = atob(dataURL.split(',')[1]);
+        const arrayBuffer = new ArrayBuffer(binaryData.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < binaryData.length; i++) {
+            uint8Array[i] = binaryData.charCodeAt(i);
+        }
+        const imageId = workbook.addImage({
+            // @ts-ignore
+            buffer: uint8Array,
+            extension: 'png'
+        });
+        worksheet.addImage(imageId, {
+            tl: { col: 3, row: 0 },
+            ext: { width: 300, height: 75 }
+        });
+
+        // 导出 Excel 文件
+        const fileName = `文件名.xlsx`;
+        workbook.xlsx.writeBuffer().then(buffer => {
+            const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }).catch(error => {
+            console.error('导出 Excel 文件时出错:', error);
+        });
+    };
+    img.onerror = () => {
+        console.error('图片加载失败');
+    };
+}
+```
+
